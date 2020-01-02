@@ -1,0 +1,24 @@
+## docker containers are very robust in the containerization environment which gives high assurity in production
+
+# In some cases containers get rolled out when any issue is encountered so in that case taking backup of the containers are the best case to overcome out of this
+
+# backup the containers
+
+# you can take the backup of the container but you cannot save it as a backup_conatiner so in that case we can make backup_container as the new image and push it into the dockerhub
+
+
+steps to be take :
+
+1. docker ps (list of containers will display)
+
+2. copy the containe_id 
+
+3. docker commit -p <container_id> <image_name>
+
+4. docker images [will display the local docker images here you can find out the docker backup image]
+
+5. docker tag <image_name> <docker-hubusername/imagename>
+
+6. docker push <docker-hubusername/imagename>
+
+7. docker run -it --name containername --network network name -p<portnum:actualportnum> <docker-hubusername/imagename>
