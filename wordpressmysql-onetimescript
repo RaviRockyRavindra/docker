@@ -1,0 +1,28 @@
+#!/bin/bash
+ echo "---------ravi rocky ravindra ----------";
+
+ YUM_CMD=$(which yum)
+
+ echo "$YUM_CMD"
+
+ executehere()
+ {
+    sudo su
+    echo "creating folder and installing docker and docker-compose"
+    mkdir /tmp/rocky
+    cd /tmp/rocky/ || exit
+    yum install docker -y
+    service docker start
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+    sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+    wget https://rockymore.s3.ap-south-1.amazonaws.com/docker-compose.yml
+    echo "***downloaded wordpress and mysql docker-compose file from rocky ******"
+    docker-compose up -d
+    docker start "$(docker ps -a)"
+    echo "****>>>>> now wait for 2 min & run localhost in your browser "
+    echo "  cheers**** RAVI ROCKY RAVINDRA ***** "
+ }
+if [[ -n $YUM_CMD ]]; then
+         executehere
+fi
